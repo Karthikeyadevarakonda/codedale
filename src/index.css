@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+
+:root {
+  font-family: "Manrope", Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+*{
+  outline: 1px solid reds;
+}
+/* Hero heading */
+.hero-heading {
+  font-size: 36px;
+  font-weight: 500; /* critical */
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 32ch;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+.fade-edges {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    transparent 100%
+  );
+}
