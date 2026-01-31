@@ -203,7 +203,7 @@ export default function LandingPage({ imageUrls }) {
             <h2 className="text-2xl font-semibold text-black">Products</h2>
             <p className="text-sm text-gray-500 mt-1">Across your journey</p>
 
-            <div className="mt-6 space-y-5 border-t border-gray-200 ">
+            <div className="mt-6 space-y-5 ">
               {/* Iterate */}
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
                 <div className="flex items-center gap-4">

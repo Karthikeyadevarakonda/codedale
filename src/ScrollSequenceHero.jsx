@@ -35,10 +35,10 @@ export default function ScrollSequenceHero({ imageUrls }) {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-stone-400 overscroll-none"
+      className="relative w-full bg-white overscroll-none"
       style={{ height: `${images.length * 3}vh` }}
     >
-      <div className="sticky top-0 h-[100svh] w-screen overflow-hidden">
+      <div className="sticky top-0 h-svh w-screen overflow-hidden">
         {/* Canvas layer */}
         <canvas
           ref={canvasRef}
