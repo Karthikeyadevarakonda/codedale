@@ -14,10 +14,11 @@ export default function LandingPage({ imageUrls }) {
   const heroTextRef = useRef(null);
   const chevronRef = useRef(null);
 
-  const [showProducts, setShowProducts] = useState(false);
+  const [showProducts, setShowProducts] = useState(false); // desktop hover menu
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // mobile menu
   const productsRef = useRef(null);
 
-  // Animate the products dropdown
+  // Desktop products dropdown animation
   useEffect(() => {
     if (productsRef.current) {
       if (showProducts) {
@@ -38,26 +39,19 @@ export default function LandingPage({ imageUrls }) {
     }
   }, [showProducts]);
 
+  // Chevron rotation for desktop
   useEffect(() => {
     if (chevronRef.current) {
-      if (showProducts) {
-        gsap.to(chevronRef.current, {
-          rotate: 180, // rotate 180° to point upwards
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      } else {
-        gsap.to(chevronRef.current, {
-          rotate: 0, // rotate back to original pointing down
-          duration: 0.3,
-          ease: "power2.in",
-        });
-      }
+      gsap.to(chevronRef.current, {
+        rotate: showProducts ? 180 : 0,
+        duration: 0.3,
+        ease: showProducts ? "power2.out" : "power2.in",
+      });
     }
   }, [showProducts]);
 
+  // Navbar and hero text scroll animations (unchanged)
   useEffect(() => {
-    /* Navbar fade out */
     gsap.to(navRef.current, {
       opacity: 0,
       ease: "none",
@@ -69,16 +63,12 @@ export default function LandingPage({ imageUrls }) {
       },
     });
 
-    /* Hero text fade + lift */
     gsap.fromTo(
       heroTextRef.current,
-      {
-        opacity: 1,
-        scale: 1,
-      },
+      { opacity: 1, scale: 1 },
       {
         opacity: 0,
-        scale: 0.7, // shrink instead of moving up
+        scale: 0.7,
         ease: "none",
         transformOrigin: "50% 50%",
         scrollTrigger: {
@@ -92,12 +82,12 @@ export default function LandingPage({ imageUrls }) {
   }, []);
 
   return (
-    <main className="relative">
+    <main className="relative ">
       {/* NAVBAR */}
       <header ref={navRef} className="fixed top-0 z-50 w-full">
         <nav
           className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:pl-14 md:pr-8 md:py-4 transition-colors duration-300 ${
-            showProducts ? "bg-white " : ""
+            showProducts ? "bg-white" : ""
           }`}
         >
           {/* LEFT LINKS (DESKTOP ONLY) */}
@@ -125,7 +115,6 @@ export default function LandingPage({ imageUrls }) {
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </a>
-
               <a href="#" className="tracking-wider">
                 PRICING
               </a>
@@ -142,7 +131,6 @@ export default function LandingPage({ imageUrls }) {
 
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3 h-9">
-            {/* WATCH DEMO (DESKTOP ONLY) */}
             <button className="hidden md:flex items-center gap-2 rounded-full tracking-widest border border-gray-200 px-4 py-2 text-sm bg-white">
               WATCH DEMO
               <img
@@ -151,14 +139,15 @@ export default function LandingPage({ imageUrls }) {
                 className="w-5 h-5 p-0.5 bg-gray-300 rounded-full"
               />
             </button>
-
-            {/* START FOR FREE */}
             <button className="rounded-full tracking-widest bg-green-950 px-3 md:px-6 py-2 text-xs md:text-sm text-white">
               START FOR FREE
             </button>
 
             {/* HAMBURGER (MOBILE ONLY) */}
-            <button className="md:hidden flex flex-col justify-between w-5 h-4 mt-[1px]">
+            <button
+              className="md:hidden flex flex-col justify-between w-5 h-4 mt-[1px]"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
               <span className="block h-[2px] w-full bg-black"></span>
               <span className="block h-[2px] w-full bg-black"></span>
               <span className="block h-[2px] w-full bg-black"></span>
@@ -167,7 +156,7 @@ export default function LandingPage({ imageUrls }) {
         </nav>
       </header>
 
-      {/* PRODUCTS DROPDOWN (DESKTOP ONLY) */}
+      {/* DESKTOP PRODUCTS DROPDOWN */}
       <div
         ref={productsRef}
         className="hidden md:block fixed top-18 inset-0 z-60 bg-white"
@@ -182,6 +171,119 @@ export default function LandingPage({ imageUrls }) {
         <Products />
       </div>
 
+      {/* MOBILE MENU */}
+      {/* MOBILE MENU */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-70 bg-[#f6f7f2] md:hidden p-6 flex flex-col h-[100dvh] overflow-y-auto ">
+          {/* Header */}
+          <div className="grid grid-cols-3 items-center">
+            {/* Left: Logo */}
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-3 w-28 justify-self-start "
+            />
+
+            {/* Center: CTA */}
+            <button className="justify-self-center rounded  bg-green-900 text-white w-full py-2 text-xs ">
+              START
+            </button>
+
+            {/* Right: Back button */}
+            <button
+              className="justify-self-end flex items-center text-gray-600"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <img src="/back.svg" alt="Back" className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Products section */}
+          <div className="mt-5 border-b border-gray-200 ">
+            <h2 className="text-2xl font-semibold text-black">Products</h2>
+            <p className="text-sm text-gray-500 mt-1">Across your journey</p>
+
+            <div className="mt-6 space-y-5 border-t border-gray-200 ">
+              {/* Iterate */}
+              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/nav1.svg"
+                    alt="Iterate"
+                    className="w-8 h-8 animate-spin [animation-duration:10s]"
+                  />
+                  <div>
+                    <p className="text-base font-medium">Iterate</p>
+                    <p className="text-sm text-gray-500">
+                      Sketch, test and refine
+                    </p>
+                  </div>
+                </div>
+                <span className="text-gray-400 text-xl">›</span>
+              </div>
+
+              {/* Evaluate */}
+              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/nav2.svg"
+                    alt="Evaluate"
+                    className="w-8 h-8 animate-spin [animation-duration:10s]"
+                  />
+                  <div>
+                    <p className="text-base font-medium">Evaluate</p>
+                    <p className="text-sm text-gray-500">Reflect and measure</p>
+                  </div>
+                </div>
+                <span className="text-gray-400 text-xl">›</span>
+              </div>
+
+              {/* Deploy */}
+              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/nav3.svg"
+                    alt="Deploy"
+                    className="w-8 h-8 animate-spin [animation-duration:10s]"
+                  />
+                  <div>
+                    <p className="text-base font-medium">Deploy</p>
+                    <p className="text-sm text-gray-500">From draft to live</p>
+                  </div>
+                </div>
+                <span className="text-gray-400 text-xl">›</span>
+              </div>
+
+              {/* Monitor */}
+              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/nav4.svg"
+                    alt="Monitor"
+                    className="w-8 h-8 animate-spin [animation-duration:10s]"
+                  />
+                  <div>
+                    <p className="text-base font-medium">Monitor</p>
+                    <p className="text-sm text-gray-500">
+                      Insights in real time
+                    </p>
+                  </div>
+                </div>
+                <span className="text-gray-400 text-xl">›</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer links */}
+          <div className="mt-5 space-y-4">
+            <p className="text-xl font-semibold">Pricing</p>
+            <p className="text-xl font-semibold">Blog</p>
+          </div>
+
+          {/* Back button */}
+        </div>
+      )}
+
       {/* HERO TEXT */}
       <div
         ref={heroTextRef}
@@ -195,7 +297,6 @@ export default function LandingPage({ imageUrls }) {
 
         <div className="mt-6 md:mt-10">
           <p className="text-[12px] md:text-xs tracking-[0.2em]">TRUSTED BY</p>
-
           <div className="relative w-full overflow-hidden fade-edges pt-2 sm:pt-0">
             <ClothingScroll />
           </div>

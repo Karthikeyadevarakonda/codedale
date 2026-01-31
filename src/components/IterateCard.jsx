@@ -12,7 +12,7 @@ const IterateCard = () => {
       {/* group enables hover */}
       <div
         className={`
-          group flex aspect-[5/3] min-h-32 w-[230px]
+          group flex aspect-[5/3] w-[20px] h-5 sm:min-h-32 sm:w-[230px]
           transition-opacity duration-700
           ${visible ? "opacity-100" : "opacity-0"}
         `}
