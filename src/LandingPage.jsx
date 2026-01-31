@@ -97,9 +97,7 @@ export default function LandingPage({ imageUrls }) {
       <header ref={navRef} className="fixed top-0 z-50 w-full">
         <nav
           className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:pl-14 md:pr-8 md:py-4 transition-colors duration-300 ${
-            showProducts
-              ? "bg-white border-b border-dashed border-gray-300"
-              : ""
+            showProducts ? "bg-white border-b border-dashed border-gray-50" : ""
           }`}
         >
           {/* LEFT LINKS (DESKTOP ONLY) */}
