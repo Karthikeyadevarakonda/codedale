@@ -3,33 +3,33 @@ import { useScroll } from "framer-motion";
 
 export function useScrollSequence(canvasRef, sectionRef, images, options = {}) {
   const { smoothing = 0.12, maxBlurLayers = 4 } = options;
-
   const frameCount = images.length;
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
 
   const targetFrame = useRef(0);
   const currentFrame = useRef(0);
   const lastDrawnFrame = useRef(-1);
 
-  /* -------- Scroll → target frame (NO render) -------- */
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    container: document.documentElement,
+    offset: ["start start", "end end"],
+  });
+
+  /* Scroll → target frame */
   useEffect(() => {
     return scrollYProgress.on("change", (v) => {
       targetFrame.current = v * (frameCount - 1);
     });
   }, [scrollYProgress, frameCount]);
 
-  /* -------- RAF render loop -------- */
+  /* Render loop */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !images.length) return;
 
     const ctx = canvas.getContext("2d", {
       alpha: false,
-      desynchronized: true, // iOS perf win
+      desynchronized: true,
     });
 
     let rafId;
@@ -37,7 +37,7 @@ export function useScrollSequence(canvasRef, sectionRef, images, options = {}) {
     const resize = () => {
       const w = document.documentElement.clientWidth;
       const h = document.documentElement.clientHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // memory cap
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -59,7 +59,6 @@ export function useScrollSequence(canvasRef, sectionRef, images, options = {}) {
       const w = document.documentElement.clientWidth;
       const h = document.documentElement.clientHeight;
 
-      // Solid base (prevents Safari transparency flash)
       ctx.globalAlpha = 1;
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, w, h);
@@ -69,7 +68,6 @@ export function useScrollSequence(canvasRef, sectionRef, images, options = {}) {
 
       ctx.drawImage(img, 0, 0, w, h);
 
-      // Motion blur illusion (cheap + safe)
       const velocity = Math.abs(targetFrame.current - currentFrame.current);
       const layers = Math.min(Math.floor(velocity * 2), maxBlurLayers);
 

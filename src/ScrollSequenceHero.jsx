@@ -4,75 +4,60 @@ import { useScrollSequence } from "./hooks/useScrollSequence";
 export default function ScrollSequenceHero({ imageUrls }) {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
+
   const [images, setImages] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const total = imageUrls.length;
 
-  /* -------- Lock scroll while loading -------- */
-  useEffect(() => {
-    if (!loaded) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+  const progress = Math.min(100, Math.round((loadedCount / total) * 100));
 
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [loaded]);
-
-  /* -------- Preload images -------- */
+  /* -------- Preload images with REAL progress -------- */
   useEffect(() => {
     if (!imageUrls?.length) return;
 
-    let cancelled = false;
-    const loadedImages = new Array(imageUrls.length);
-    let done = 0;
+    const imgs = new Array(imageUrls.length);
 
     imageUrls.forEach((src, i) => {
       const img = new Image();
       img.decoding = "async";
       img.src = src;
       img.onload = () => {
-        if (cancelled) return;
-        loadedImages[i] = img;
-        done++;
-        if (done === imageUrls.length) {
-          setImages(loadedImages);
-          setLoaded(true);
+        imgs[i] = img;
+        setLoadedCount((c) => c + 1);
+
+        if (imgs.filter(Boolean).length === imageUrls.length) {
+          setImages(imgs);
         }
       };
     });
-
-    return () => {
-      cancelled = true;
-    };
   }, [imageUrls]);
 
-  /* -------- Scroll sequence -------- */
-  useScrollSequence(canvasRef, sectionRef, images, {
-    smoothing: 0.12,
-    maxBlurLayers: 4,
-  });
+  useScrollSequence(canvasRef, sectionRef, images);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-black overscroll-none h-[190dvh] sm:h-[400dvh]"
-    >
-      {/* Sticky viewport */}
-      <div className="sticky top-0 h-[100dvh] w-screen overflow-hidden">
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 h-full w-full pointer-events-none"
-        />
-      </div>
-
-      {/* Optional loader */}
-      {!loaded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white">
-          Loading…
+    <>
+      {/* PINNED SCROLL SEQUENCE */}
+      <section ref={sectionRef} className="relative w-full bg-black h-[220dvh]">
+        <div className="sticky top-0 h-[100dvh] w-screen overflow-hidden">
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 h-full w-full pointer-events-none"
+          />
         </div>
-      )}
-    </section>
+
+        {/* Loader */}
+        <div
+          className={`fixed inset-0 z-50 bg-[#f6f7f2] transition-opacity duration-700 ${
+            progress === 100 ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="absolute bottom-6 left-6 text-[72px] font-light text-black/30 leading-none">
+            {progress}
+          </div>
+        </div>
+      </section>
+
+      {/* RELEASED NEXT SECTION */}
+    </>
   );
 }
