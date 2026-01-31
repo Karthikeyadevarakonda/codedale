@@ -16,7 +16,6 @@ const EvaluateCard = () => {
           ${visible ? "opacity-100" : "opacity-0"}
         `}
       >
-        {/* ICON CLUSTER */}
         <div className="relative aspect-square h-full min-h-32">
           {[
             { top: "37%", left: "0%", h: "50%", d: "3000ms" },
@@ -33,7 +32,6 @@ const EvaluateCard = () => {
               "
               style={{ top: pos.top, left: pos.left, height: pos.h }}
             >
-              {/* ROTATING DASHED CIRCLE */}
               <div className="absolute -inset-1/6">
                 <svg
                   viewBox="0 0 64 64"
@@ -58,7 +56,6 @@ const EvaluateCard = () => {
                 </svg>
               </div>
 
-              {/* PLUS ICON */}
               <div
                 className="
                   absolute -inset-[calc(5%+12px)]
@@ -83,7 +80,6 @@ const EvaluateCard = () => {
           ))}
         </div>
 
-        {/* LABEL */}
         <div className="relative flex-1">
           <div className="absolute top-[68%] -left-7 flex -translate-y-1/2 items-center gap-2">
             <div

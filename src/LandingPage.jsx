@@ -14,11 +14,10 @@ export default function LandingPage({ imageUrls }) {
   const heroTextRef = useRef(null);
   const chevronRef = useRef(null);
 
-  const [showProducts, setShowProducts] = useState(false); // desktop hover menu
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // mobile menu
+  const [showProducts, setShowProducts] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const productsRef = useRef(null);
 
-  // Desktop products dropdown animation
   useEffect(() => {
     if (productsRef.current) {
       if (showProducts) {
@@ -39,7 +38,6 @@ export default function LandingPage({ imageUrls }) {
     }
   }, [showProducts]);
 
-  // Chevron rotation for desktop
   useEffect(() => {
     if (chevronRef.current) {
       gsap.to(chevronRef.current, {
@@ -50,7 +48,6 @@ export default function LandingPage({ imageUrls }) {
     }
   }, [showProducts]);
 
-  // Navbar and hero text scroll animations (unchanged)
   useEffect(() => {
     gsap.to(navRef.current, {
       opacity: 0,
@@ -83,14 +80,12 @@ export default function LandingPage({ imageUrls }) {
 
   return (
     <main className="relative ">
-      {/* NAVBAR */}
       <header ref={navRef} className="fixed top-0 z-50 w-full">
         <nav
           className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:pl-14 md:pr-8 md:py-4 transition-colors duration-300 ${
             showProducts ? "bg-white" : ""
           }`}
         >
-          {/* LEFT LINKS (DESKTOP ONLY) */}
           <div className="hidden md:flex items-center gap-10">
             <div className="flex gap-8 text-sm tracking-wide">
               <a
@@ -124,12 +119,10 @@ export default function LandingPage({ imageUrls }) {
             </div>
           </div>
 
-          {/* LOGO */}
           <div className="flex items-center justify-center">
             <img src={logo} className="w-28 h-9 md:w-36 md:h-12" alt="Logo" />
           </div>
 
-          {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3 h-9">
             <button className="hidden md:flex items-center gap-2 rounded-full tracking-widest border border-gray-200 px-4 py-2 text-sm bg-white">
               WATCH DEMO
@@ -143,7 +136,6 @@ export default function LandingPage({ imageUrls }) {
               START FOR FREE
             </button>
 
-            {/* HAMBURGER (MOBILE ONLY) */}
             <button
               className="md:hidden flex flex-col justify-between w-5 h-4 mt-[1px]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -156,7 +148,6 @@ export default function LandingPage({ imageUrls }) {
         </nav>
       </header>
 
-      {/* DESKTOP PRODUCTS DROPDOWN */}
       <div
         ref={productsRef}
         className="hidden md:block fixed top-18 inset-0 z-60 bg-white"
@@ -171,25 +162,19 @@ export default function LandingPage({ imageUrls }) {
         <Products />
       </div>
 
-      {/* MOBILE MENU */}
-      {/* MOBILE MENU */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-70 bg-[#f6f7f2] md:hidden p-6 flex flex-col h-[100dvh] overflow-y-auto ">
-          {/* Header */}
           <div className="grid grid-cols-3 items-center">
-            {/* Left: Logo */}
             <img
               src={logo}
               alt="Logo"
               className="h-3 w-28 justify-self-start "
             />
 
-            {/* Center: CTA */}
             <button className="justify-self-center rounded  bg-green-900 text-white w-full py-2 text-xs ">
               START
             </button>
 
-            {/* Right: Back button */}
             <button
               className="justify-self-end flex items-center text-gray-600"
               onClick={() => setMobileMenuOpen(false)}
@@ -198,13 +183,11 @@ export default function LandingPage({ imageUrls }) {
             </button>
           </div>
 
-          {/* Products section */}
           <div className="mt-5 border-b border-gray-200 ">
             <h2 className="text-2xl font-semibold text-black">Products</h2>
             <p className="text-sm text-gray-500 mt-1">Across your journey</p>
 
             <div className="mt-6 space-y-5 ">
-              {/* Iterate */}
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
                 <div className="flex items-center gap-4">
                   <img
@@ -222,7 +205,6 @@ export default function LandingPage({ imageUrls }) {
                 <span className="text-gray-400 text-xl">›</span>
               </div>
 
-              {/* Evaluate */}
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
                 <div className="flex items-center gap-4">
                   <img
@@ -238,7 +220,6 @@ export default function LandingPage({ imageUrls }) {
                 <span className="text-gray-400 text-xl">›</span>
               </div>
 
-              {/* Deploy */}
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
                 <div className="flex items-center gap-4">
                   <img
@@ -254,7 +235,6 @@ export default function LandingPage({ imageUrls }) {
                 <span className="text-gray-400 text-xl">›</span>
               </div>
 
-              {/* Monitor */}
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
                 <div className="flex items-center gap-4">
                   <img
@@ -274,17 +254,13 @@ export default function LandingPage({ imageUrls }) {
             </div>
           </div>
 
-          {/* Footer links */}
           <div className="mt-5 space-y-4">
             <p className="text-xl font-semibold">Pricing</p>
             <p className="text-xl font-semibold">Blog</p>
           </div>
-
-          {/* Back button */}
         </div>
       )}
 
-      {/* HERO TEXT */}
       <div
         ref={heroTextRef}
         className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-20 md:pt-16 px-4 text-center"
@@ -303,7 +279,6 @@ export default function LandingPage({ imageUrls }) {
         </div>
       </div>
 
-      {/* SCROLL SEQUENCE */}
       <section className="relative h-screen">
         <ScrollSequenceHero imageUrls={imageUrls} />
       </section>

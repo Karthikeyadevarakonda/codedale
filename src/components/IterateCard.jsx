@@ -9,15 +9,13 @@ const IterateCard = () => {
 
   return (
     <a className="col-span-1 py-12" href="/iterate">
-      {/* group enables hover */}
       <div
         className={`
-          group flex aspect-[5/3] w-[20px] h-5 sm:min-h-32 sm:w-[230px]
+          group flex aspect-[5/3] min-h-32 w-[230px]
           transition-opacity duration-700
           ${visible ? "opacity-100" : "opacity-0"}
         `}
       >
-        {/* ICON CLUSTER */}
         <div className="relative aspect-square h-full min-h-32">
           {[
             {
@@ -58,7 +56,6 @@ const IterateCard = () => {
               "
               style={{ top: pos.top, left: pos.left, height: pos.h }}
             >
-              {/* ROTATING SHAPES */}
               <div className="absolute -inset-1/6">
                 <svg
                   viewBox="0 0 64 64"
@@ -97,7 +94,6 @@ const IterateCard = () => {
                 </svg>
               </div>
 
-              {/* PLUS ICON */}
               <div
                 className="
                   absolute -inset-[calc(5%+12px)]
@@ -122,7 +118,6 @@ const IterateCard = () => {
           ))}
         </div>
 
-        {/* LABEL */}
         <div className="relative flex-1">
           <div className="absolute top-[36%] -left-6 flex -translate-y-1/2 items-center gap-2">
             <div

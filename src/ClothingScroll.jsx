@@ -38,7 +38,6 @@ export default function ClothingScroll() {
       ref={ref}
       className="relative w-full flex justify-center overflow-hidden"
     >
-      {/* Central container */}
       <div className="max-w-3xl w-full relative overflow-hidden">
         <motion.div
           className="flex gap-18 sm:gap-8 animate-scroll-left w-max"
@@ -59,7 +58,6 @@ export default function ClothingScroll() {
         </motion.div>
       </div>
 
-      {/* CSS Animation */}
       <style>{`
         @keyframes scroll-left {
           0% { transform: translateX(0); }

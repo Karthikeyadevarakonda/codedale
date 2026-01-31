@@ -11,7 +11,6 @@ export default function ScrollSequenceHero({ imageUrls }) {
 
   const progress = Math.min(100, Math.round((loadedCount / total) * 100));
 
-  /* -------- Preload images with REAL progress -------- */
   useEffect(() => {
     if (!imageUrls?.length) return;
 
@@ -36,7 +35,6 @@ export default function ScrollSequenceHero({ imageUrls }) {
 
   return (
     <>
-      {/* PINNED SCROLL SEQUENCE */}
       <section ref={sectionRef} className="relative w-full bg-black h-[220dvh]">
         <div className="sticky top-0 h-[100dvh] w-screen overflow-hidden">
           <canvas
@@ -45,7 +43,6 @@ export default function ScrollSequenceHero({ imageUrls }) {
           />
         </div>
 
-        {/* Loader */}
         <div
           className={`fixed inset-0 z-50 bg-[#f6f7f2] transition-opacity duration-700 ${
             progress === 100 ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -56,8 +53,6 @@ export default function ScrollSequenceHero({ imageUrls }) {
           </div>
         </div>
       </section>
-
-      {/* RELEASED NEXT SECTION */}
     </>
   );
 }

@@ -9,13 +9,11 @@ const MonitorCard = () => {
 
   return (
     <a className="col-span-1 py-12" href="/monitor">
-      {/* group enables hover for all children */}
       <div
         className={`group flex aspect-[5/3] min-h-32 w-[230px]
         transition-opacity duration-700
         ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        {/* ICON CLUSTER */}
         <div className="relative aspect-square h-full min-h-32">
           {[
             { top: "0%", left: "0%", h: "65%" },
@@ -32,7 +30,6 @@ const MonitorCard = () => {
               "
               style={{ top: pos.top, left: pos.left, height: pos.h }}
             >
-              {/* ROTATING RINGS */}
               <div className="absolute -inset-1/6">
                 <svg
                   viewBox="0 0 64 64"
@@ -74,7 +71,6 @@ const MonitorCard = () => {
                 </svg>
               </div>
 
-              {/* PLUS ICON */}
               <div
                 className="
                   absolute -inset-[calc(5%+12px)]
@@ -98,7 +94,6 @@ const MonitorCard = () => {
           ))}
         </div>
 
-        {/* LABEL */}
         <div className="relative flex-1">
           <div className="absolute top-[40%] -left-8 flex -translate-y-1/2 items-center gap-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-200 text-green-900 hover:bg-black hover:text-white text-xs font-bold transition-transform duration-500 group-hover:scale-110">

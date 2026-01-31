@@ -41,7 +41,6 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center  p-0">
-      {/* Cards Row */}
       <div className="flex flex-wrap justify-center gap-16 mb-12">
         {cards.map((card) => (
           <div
@@ -57,7 +56,6 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Descriptions Row */}
       <div className="grid grid-cols-4 gap-16 max-w-6xl text-left">
         {cards.map((card) => (
           <div

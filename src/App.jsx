@@ -258,7 +258,6 @@ const App = () => {
   return (
     <div>
       <LandingPage imageUrls={imageUrls} />
-      {/* <Products /> */}
     </div>
   );
 };

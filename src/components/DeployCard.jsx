@@ -16,7 +16,6 @@ const DeployCard = () => {
           ${visible ? "opacity-100" : "opacity-0"}
         `}
       >
-        {/* ICON CLUSTER */}
         <div className="relative aspect-square h-full min-h-32">
           {[
             { top: "40%", left: "0%", h: "60%", d: "3000ms" },
@@ -33,7 +32,6 @@ const DeployCard = () => {
               "
               style={{ top: pos.top, left: pos.left, height: pos.h }}
             >
-              {/* ROTATING DEPLOY GLYPH */}
               <div className="absolute -inset-1/6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +54,6 @@ const DeployCard = () => {
                 </svg>
               </div>
 
-              {/* PLUS ICON */}
               <div
                 className="
                   absolute -inset-[calc(5%+12px)]
@@ -81,7 +78,6 @@ const DeployCard = () => {
           ))}
         </div>
 
-        {/* LABEL at top-right corner */}
         <div className="absolute top-2 right-8 flex items-center gap-2 ">
           <div
             className="
