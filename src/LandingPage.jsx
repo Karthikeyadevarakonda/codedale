@@ -187,7 +187,7 @@ export default function LandingPage({ imageUrls }) {
       {/* HERO TEXT */}
       <div
         ref={heroTextRef}
-        className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-10 md:pt-16 px-4 text-center"
+        className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-20 md:pt-16 px-4 text-center"
       >
         <h1 className="hero-heading text-black text-[30px] font-semibold sm:font-medium sm:text-[36px] md:leading-tight">
           The single platform to iterate,
