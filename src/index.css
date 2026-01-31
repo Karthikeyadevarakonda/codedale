@@ -8,10 +8,8 @@
 
 /* Hero heading */
 .hero-heading {
-  font-size: 36px;
-  font-weight: 500; /* critical */
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+ 
+ 
   max-width: 32ch;
   color: #000;
   -webkit-font-smoothing: antialiased;

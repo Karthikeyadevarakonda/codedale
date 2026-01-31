@@ -93,16 +93,18 @@ export default function LandingPage({ imageUrls }) {
 
   return (
     <main className="relative">
+      {/* NAVBAR */}
       <header ref={navRef} className="fixed top-0 z-50 w-full">
         <nav
-          className={`mx-auto flex max-w-7xl items-center justify-between pl-14 pr-8 py-4 transition-colors duration-300 border-b-0 ${
+          className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:pl-14 md:pr-8 md:py-4 transition-colors duration-300 ${
             showProducts
               ? "bg-white border-b border-dashed border-gray-300"
               : ""
           }`}
         >
-          <div className="flex items-center gap-10">
-            <div className="hidden md:flex gap-8 text-sm tracking-wide ">
+          {/* LEFT LINKS (DESKTOP ONLY) */}
+          <div className="hidden md:flex items-center gap-10">
+            <div className="flex gap-8 text-sm tracking-wide">
               <a
                 href="#"
                 className="tracking-wider relative flex items-center gap-1"
@@ -121,9 +123,8 @@ export default function LandingPage({ imageUrls }) {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-chevron-down"
                 >
-                  <path d="m6 9 6 6 6-6"></path>
+                  <path d="m6 9 6 6 6-6" />
                 </svg>
               </a>
 
@@ -136,12 +137,15 @@ export default function LandingPage({ imageUrls }) {
             </div>
           </div>
 
-          <div className="pl-10 ml-20">
-            <img src={logo} className="w-38 h-10 " alt="Logo" />
+          {/* LOGO */}
+          <div className="flex items-center justify-center">
+            <img src={logo} className="w-28 h-9 md:w-36 md:h-12" alt="Logo" />
           </div>
 
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 rounded-full tracking-widest border border-gray-200 px-4 py-2 text-sm bg-white">
+          {/* RIGHT ACTIONS */}
+          <div className="flex items-center gap-3 h-9">
+            {/* WATCH DEMO (DESKTOP ONLY) */}
+            <button className="hidden md:flex items-center gap-2 rounded-full tracking-widest border border-gray-200 px-4 py-2 text-sm bg-white">
               WATCH DEMO
               <img
                 src={pause}
@@ -150,16 +154,25 @@ export default function LandingPage({ imageUrls }) {
               />
             </button>
 
-            <button className="rounded-full tracking-widest bg-green-950 px-6 py-2 text-sm text-white">
+            {/* START FOR FREE */}
+            <button className="rounded-full tracking-widest bg-green-950 px-3 md:px-6 py-2 text-xs md:text-sm text-white">
               START FOR FREE
+            </button>
+
+            {/* HAMBURGER (MOBILE ONLY) */}
+            <button className="md:hidden flex flex-col justify-between w-5 h-4 mt-[1px]">
+              <span className="block h-[2px] w-full bg-black"></span>
+              <span className="block h-[2px] w-full bg-black"></span>
+              <span className="block h-[2px] w-full bg-black"></span>
             </button>
           </div>
         </nav>
       </header>
 
+      {/* PRODUCTS DROPDOWN (DESKTOP ONLY) */}
       <div
         ref={productsRef}
-        className="fixed top-18 inset-0 z-60 bg-white"
+        className="hidden md:block fixed top-18 inset-0 z-60 bg-white"
         style={{
           paddingTop: "64px",
           opacity: 0,
@@ -171,26 +184,27 @@ export default function LandingPage({ imageUrls }) {
         <Products />
       </div>
 
-      {/* HERO */}
-
+      {/* HERO TEXT */}
       <div
         ref={heroTextRef}
-        className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-16 px-6 text-center"
+        className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-10 md:pt-16 px-4 text-center"
       >
-        <h1 className="hero-heading text-black">
+        <h1 className="hero-heading text-black text-[30px] font-semibold sm:font-medium sm:text-[36px] md:leading-tight">
           The single platform to iterate,
-          <br />
+          <br className="hidden md:block" />
           evaluate, deploy, and monitor AI agents
         </h1>
 
-        <div className="mt-10">
-          <p className="text-xs tracking-[0.2em]">TRUSTED BY</p>
+        <div className="mt-6 md:mt-10">
+          <p className="text-[12px] md:text-xs tracking-[0.2em]">TRUSTED BY</p>
 
-          <div className="relative w-full overflow-hidden fade-edges">
+          <div className="relative w-full overflow-hidden fade-edges pt-2 sm:pt-0">
             <ClothingScroll />
           </div>
         </div>
       </div>
+
+      {/* SCROLL SEQUENCE */}
       <section className="relative h-screen">
         <ScrollSequenceHero imageUrls={imageUrls} />
       </section>

@@ -21,7 +21,6 @@ const svgs = [
   twele,
   four,
   five,
-
   seven,
   eight,
   nine,
@@ -42,7 +41,7 @@ export default function ClothingScroll() {
       {/* Central container */}
       <div className="max-w-3xl w-full relative overflow-hidden">
         <motion.div
-          className="flex gap-8 animate-scroll-left w-max"
+          className="flex gap-18 sm:gap-8 animate-scroll-left w-max"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1 }}
@@ -52,7 +51,7 @@ export default function ClothingScroll() {
               <img
                 src={src}
                 alt=""
-                className="w-36 h-36 sm:w-30 sm:h-25 object-contain"
+                className="w-30 h-12 sm:w-30 sm:h-25 object-contain"
                 draggable="false"
               />
             </div>
@@ -73,7 +72,7 @@ export default function ClothingScroll() {
 
         @media (max-width: 640px) {
           .animate-scroll-left {
-            animation-duration: 20s;
+            animation-duration: 35s;
           }
         }
       `}</style>
