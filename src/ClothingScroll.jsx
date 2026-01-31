@@ -10,8 +10,25 @@ import seven from "./assets/seven.svg";
 import nine from "./assets/nine.svg";
 import ten from "./assets/ten.svg";
 import eleven from "./assets/eleven.svg";
+import six from "./assets/six.svg";
+import eight from "./assets/eight.svg";
+import twele from "./assets/twele.svg";
 
-const svgs = [one, two, three, four, five, seven, nine, ten, eleven];
+const svgs = [
+  six,
+  one,
+  two,
+  twele,
+  four,
+  five,
+
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  three,
+];
 
 export default function ClothingScroll() {
   const ref = useRef(null);
@@ -51,7 +68,7 @@ export default function ClothingScroll() {
         }
 
         .animate-scroll-left {
-          animation: scroll-left 25s linear infinite;
+          animation: scroll-left 20s linear infinite;
         }
 
         @media (max-width: 640px) {

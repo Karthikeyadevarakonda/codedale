@@ -1,16 +1,60 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollSequenceHero from "./ScrollSequenceHero";
 import ClothingScroll from "./ClothingScroll";
 import logo from "./assets/logo.svg";
 import pause from "./assets/pause.svg";
+import Products from "./Products";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingPage({ imageUrls }) {
   const navRef = useRef(null);
   const heroTextRef = useRef(null);
+  const chevronRef = useRef(null);
+
+  const [showProducts, setShowProducts] = useState(false);
+  const productsRef = useRef(null);
+
+  // Animate the products dropdown
+  useEffect(() => {
+    if (productsRef.current) {
+      if (showProducts) {
+        gsap.to(productsRef.current, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      } else {
+        gsap.to(productsRef.current, {
+          y: -50,
+          autoAlpha: 0,
+          duration: 0.4,
+          ease: "power2.in",
+        });
+      }
+    }
+  }, [showProducts]);
+
+  useEffect(() => {
+    if (chevronRef.current) {
+      if (showProducts) {
+        gsap.to(chevronRef.current, {
+          rotate: 180, // rotate 180° to point upwards
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      } else {
+        gsap.to(chevronRef.current, {
+          rotate: 0, // rotate back to original pointing down
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      }
+    }
+  }, [showProducts]);
 
   useEffect(() => {
     /* Navbar fade out */
@@ -50,16 +94,43 @@ export default function LandingPage({ imageUrls }) {
   return (
     <main className="relative">
       <header ref={navRef} className="fixed top-0 z-50 w-full">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between pl-14 pr-8 py-4">
+        <nav
+          className={`mx-auto flex max-w-7xl items-center justify-between pl-14 pr-8 py-4 transition-colors duration-300 border-b-0 ${
+            showProducts
+              ? "bg-white border-b border-dashed border-gray-300"
+              : ""
+          }`}
+        >
           <div className="flex items-center gap-10">
-            <div className="hidden md:flex gap-8 text-sm tracking-wide">
-              <a className="tracking-wider " href="#">
+            <div className="hidden md:flex gap-8 text-sm tracking-wide ">
+              <a
+                href="#"
+                className="tracking-wider relative flex items-center gap-1"
+                onMouseEnter={() => setShowProducts(true)}
+                onMouseLeave={() => setShowProducts(false)}
+              >
                 PRODUCTS
+                <svg
+                  ref={chevronRef}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-chevron-down"
+                >
+                  <path d="m6 9 6 6 6-6"></path>
+                </svg>
               </a>
-              <a className="tracking-wider " href="#">
+
+              <a href="#" className="tracking-wider">
                 PRICING
               </a>
-              <a className="tracking-wider " href="#">
+              <a href="#" className="tracking-wider">
                 BLOG
               </a>
             </div>
@@ -85,6 +156,16 @@ export default function LandingPage({ imageUrls }) {
           </div>
         </nav>
       </header>
+
+      <div
+        ref={productsRef}
+        className="fixed top-18 inset-0 z-60 bg-white"
+        style={{ paddingTop: "64px", transform: "translateY(-100px)" }}
+        onMouseEnter={() => setShowProducts(true)}
+        onMouseLeave={() => setShowProducts(false)}
+      >
+        <Products />
+      </div>
 
       {/* HERO */}
 

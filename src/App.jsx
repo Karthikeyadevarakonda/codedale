@@ -1,5 +1,6 @@
 import React from "react";
 import LandingPage from "./LandingPage";
+import Products from "./Products";
 
 const App = () => {
   const imageUrls = [
@@ -257,6 +258,7 @@ const App = () => {
   return (
     <div>
       <LandingPage imageUrls={imageUrls} />
+      {/* <Products /> */}
     </div>
   );
 };

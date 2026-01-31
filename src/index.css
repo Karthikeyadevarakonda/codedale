@@ -6,9 +6,6 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
-*{
-  outline: 1px solid reds;
-}
 /* Hero heading */
 .hero-heading {
   font-size: 36px;
@@ -45,3 +42,7 @@ body {
     transparent 100%
   );
 }
+
+/* Force full-screen pure white overlay for the products dropdown */
+
+
