@@ -159,12 +159,11 @@ export default function LandingPage({ imageUrls }) {
 
       <div
         ref={productsRef}
-        className="fixed inset-0 z-60 bg-white"
+        className="fixed top-18 inset-0 z-60 bg-white"
         style={{
           paddingTop: "64px",
-          transform: "translateY(-100%)",
-          opacity: 0, // start invisible
-          pointerEvents: "none", // prevent accidental hover before open
+          opacity: 0,
+          transform: "translateY(-50px)",
         }}
         onMouseEnter={() => setShowProducts(true)}
         onMouseLeave={() => setShowProducts(false)}
