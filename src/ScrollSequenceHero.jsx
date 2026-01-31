@@ -35,7 +35,7 @@ export default function ScrollSequenceHero({ imageUrls }) {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-amber-200 overscroll-none"
+      className="relative w-full bg-stone-400 overscroll-none"
       style={{ height: `${images.length * 3}vh` }}
     >
       <div className="sticky top-0 h-[100svh] w-screen overflow-hidden">
