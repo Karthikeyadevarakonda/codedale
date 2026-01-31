@@ -35,13 +35,13 @@ export default function ScrollSequenceHero({ imageUrls }) {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[500vh] bg-black overscroll-none"
+      className="relative h-[200vh] w-full sm:h-[500vh] bg-black overscroll-none"
     >
       <div className="sticky top-0 h-screen w-screen overflow-hidden">
         {/* Canvas layer */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 h-full w-full bg-black pointer-events-none"
+          className="absolute sm:inset-0 h-full w-full bg-black pointer-events-none"
         />
       </div>
     </section>

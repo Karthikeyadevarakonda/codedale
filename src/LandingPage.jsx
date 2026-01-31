@@ -189,7 +189,7 @@ export default function LandingPage({ imageUrls }) {
         ref={heroTextRef}
         className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center pt-20 md:pt-16 px-4 text-center"
       >
-        <h1 className="hero-heading text-black text-[30px] font-semibold sm:font-medium sm:text-[36px] md:leading-tight">
+        <h1 className="hero-heading text-black text-[30px] leading-tight font-semibold sm:font-medium sm:text-[36px] md:leading-tight">
           The single platform to iterate,
           <br className="hidden md:block" />
           evaluate, deploy, and monitor AI agents
